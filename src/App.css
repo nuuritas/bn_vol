@@ -1,0 +1,428 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  min-height: -webkit-fill-available; /* for mobile Safari */
+  background-color: #0f172a;
+  color: #e2e8f0;
+}
+
+html {
+  height: -webkit-fill-available; /* for mobile Safari */
+}
+
+#root {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-container {
+  /* background-color: #131722; */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+}
+
+.controls-box {
+  display: flex;
+  flex-direction: row; /* Change to row layout */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+  max-width: 600px; /* Set a max width for the controls */
+  margin: 0 auto; /* Center the controls box */
+  position: relative;
+  z-index: 1;
+  gap: 10px; /* Add space between items */
+}
+
+.symbol-input, .interval-select, .dayback-input {
+  background-color: #131722;
+  border: 1px solid #333;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+  height: 40px;
+}
+
+.symbol-input {
+  max-width: 170px;
+}
+
+.dayback-input {
+  max-width: 60px;
+}
+
+.symbol-input:focus, .interval-select:focus .dayback-input:focus {
+  border-color: #2962FF;
+}
+
+
+
+.status-indicator {
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-indicator .loading {
+  color: #ffd700;
+}
+
+.status-indicator .error {
+  color: #ff4444;
+}
+
+.status-indicator .success {
+  color: #00ff00;
+}
+
+.chart-container {
+  display: table; /* Use flexbox for centering */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically if needed */
+  padding: 0rem;
+  background-color: "transparent";
+  border-radius: 8px;
+  margin: 1rem auto;
+  max-width: 90%;
+  height: 800px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.fetch-button {
+  padding: 0.25rem 0.2rem;
+  background-color: transparent;
+  color: white;
+  border: 2px solid #7873f5; /* Add a border */
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+  position: relative;
+  z-index: 1;
+  height: 38px;
+}
+
+.fetch-button::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #ff6ec4, #7873f5);
+  border-radius: 6px;
+  z-index: -1;
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+
+.fetch-button:hover::before {
+  opacity: 1;
+}
+
+.symbol-select-trigger:hover {
+  background-color: #783e3e;
+  border-color: #ff6ec4; /* Change border color on hover */
+}
+
+.symbol-select-trigger {
+  padding: 0.25rem 0.2rem;
+  background-color: transparent;
+  color: white;
+  border: 2px solid #7873f5; /* Add a border */
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+  position: relative;
+  z-index: 1;
+  height: 38px;
+}
+
+.symbol-select-trigger::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #ff6ec4, #7873f5);
+  border-radius: 6px;
+  z-index: -1;
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+
+.symbol-select-trigger:hover::before {
+  opacity: 1;
+}
+
+.symbol-select-trigger:hover {
+  background-color: #783e3e;
+  border-color: #ff6ec4; /* Change border color on hover */
+}
+
+
+
+
+
+
+
+
+
+/* Responsive adjustments */
+/* @media (max-width: 768px) {
+  .controls-box {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .symbol-input, .interval-select {
+    width: 100%;
+  }
+}
+   */
+
+/* @media screen and (max-width: 768px) {
+  .content {
+    padding: 0.5rem;
+  }
+} */
+
+
+.page-title {
+  font-size: 2.5rem; /* Larger size */
+  font-weight: bold;
+  color: #ffffff;
+  margin: 0;
+  text-transform: uppercase; /* Adds emphasis */
+}
+
+
+.input-label {
+  margin-bottom: 5px; /* Space between label and input */
+  color: white; /* Label color */
+  font-weight: bold; /* Make label bold */
+}
+
+/* input[type="checkbox"] {
+  margin: 5px 3px 3px 4px;
+  padding: 10;
+  border: 5px solid #ccc;
+  width: 20px;
+  height: 15px;
+  accent-color: #2962FF;
+  display: flex;         
+  justify-content: center;
+} */
+
+input[type="checkbox"] {
+  margin-right: 30px;
+  padding: 0; /* Set padding to 0 */
+  border: 5px solid #ccc; /* Custom border */
+  max-width: 15px; /* Set width for visual change */
+  height: 15px; /* Set height for visual change */
+  accent-color: #9e167c; 
+  display: flex; /* Enable flexbox */
+  justify-content: center;
+}
+
+.symbol-input, .dayback-input {
+  width: 50%; /* Full width for inputs */
+  padding: 10px; /* Padding for inputs */
+  border: 1px solid #333; /* Border for inputs */
+  border-radius: 4px; /* Rounded corners */
+}
+
+.subheader {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.subheader-button {
+  background-color: #131722;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 0 0 0 0px;
+  transition: background-color 0.3s;
+  position: relative;
+  z-index: 1;
+}
+
+.subheader-button::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #ff6ec4, #7873f5);
+  border-radius: 6px;
+  z-index: -1;
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+
+.subheader-button:hover::before {
+  opacity: 1;
+}
+
+.subheader-button:hover {
+  background-color: #783e3e;
+  border-color: #ff6ec4;
+}
+
+.subheader-button.active {
+  background: linear-gradient(45deg, #ff6ec4, #7873f5);
+  border-color: #ff6ec4;
+  color: white;
+}
+
+.tv-chart-container {
+  height: 50vh; 
+  width: 50%; /* Full width */
+  display: flex; /* Use flexbox for alignment */
+  flex-direction: column; /* Stack children vertically */
+}
+
+.tv-chart-container2 {
+  height: 50vh; /* Make the height responsive, e.g., 80% of the viewport height */
+  width: 50%; /* Full width */
+  display: flex; /* Use flexbox for alignment */
+  flex-direction: column; /* Stack children vertically */
+}
+
+.tv-chart-container3 {
+  height: 50vh; /* Make the height responsive, e.g., 80% of the viewport height */
+  width: 50%; /* Full width */
+  display: flex; /* Use flexbox for alignment */
+  flex-direction: column; /* Stack children vertically */
+}
+
+.market-filters {
+  display: flex;
+  justify-content: center; /* Center the checkboxes horizontally */
+  gap: 2px; /* Add space between the checkboxes */
+  margin-bottom: 5px; /* Add some space below the checkboxes */
+}
+
+.market-filter-label {
+  display: flex;
+  align-items: center; /* Align the checkbox and text vertically */
+  gap: 2px; /* Add space between the checkbox and the text */
+  font-size: 16px;
+  color: #ffffff; 
+  max-width: 20px;
+}
+
+.content {
+  flex: 1;
+  width: 100%;
+  padding: 1rem;
+}
+
+.table-container {
+  display: flex;
+  flex-direction: column;
+  width: 98%;
+  margin-left: 1%;
+  margin-right: 1%;
+  height: auto;
+}
+
+
+:root {
+  --vh: 1vh;
+}
+
+.min-h-screen {
+  min-height: 100vh; /* Fallback */
+  min-height: calc(var(--vh, 1vh) * 100);
+}
+
+/* Add this if you're using any sticky positioning */
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+}
+
+/* Samsung Browser specific fix */
+@supports (-webkit-appearance:none) {
+  .min-h-screen {
+    min-height: -webkit-fill-available;
+  }
+}
+
+.box-container {
+  display: flex;
+  width: 90%;
+  max-width: 720px; /* Limit the maximum width */
+  margin: 0 auto; /* Center the container horizontally */
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.box {
+  flex: 1;
+  text-align: center;
+  padding-top: 5px;
+  padding-right: 1px;
+  padding-left: 1px;
+  padding-bottom: 5px;
+  border: 2px solid #7873f5;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+  margin: 1px;
+  border-radius: 1px;
+  background-color: transparent;
+  color: white;
+}
+
+.box.selected {
+  background-color: #7873f5;
+  color: white;
+}
+
+
+
+/* Add this to your global CSS or a stylesheet */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's above everything */
+}
+
+.popup-content {
+  background-color: #1a1f2d;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  height: 60vh; /* 60% of viewport height */
+  z-index: 1001; /* Ensure content is above overlay */
+  position: relative; /* Ensure content is positioned correctly */
+}
